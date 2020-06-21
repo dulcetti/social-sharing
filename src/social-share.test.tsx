@@ -1,9 +1,15 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import SocialShare from './social-share';
+import { SocialShare } from './social-share';
 
-test('renders learn react link', () => {
+test('render the title default', () => {
   const { getByText } = render(<SocialShare />);
-  const linkElement = getByText(/Social Share/i);
-  expect(linkElement).toBeInTheDocument();
+  const titleDefault = getByText(/Gostou\? Compartilhe esse artigo ;\)/i);
+  expect(titleDefault).toBeInTheDocument();
+});
+
+test('render the title prop', () => {
+  const { getByText } = render(<SocialShare title="Fodasse" />);
+  const textTitleProp = getByText(/Fodasse/i);
+  expect(textTitleProp).toBeInTheDocument();
 });
