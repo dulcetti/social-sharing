@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 
-export default function SocialShare() {
-  return <div className="social-share">Social Share</div>;
-}
+export const SocialShare: FunctionComponent<{ title?: string }> = ({
+  title = 'Gostou? Compartilhe esse artigo ;)',
+}) => {
+  return <div className="social-share">{title}</div>;
+};
