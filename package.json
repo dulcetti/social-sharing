@@ -2,41 +2,62 @@
   "name": "social-sharing",
   "author": "Bruno Dulcetti <brunodulcetti@gmail.com>",
   "version": "0.1.0",
+  "description": "A component to share on social medias a specific URL",
+  "license": "MIT",
+  "main": "dist/social-share.js",
+  "module": "dist/social-share.modern.js",
+  "source": "src/social-share.tsx",
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "lint": "./node_modules/.bin/tslint src/**/*.ts",
-    "start": "react-scripts start",
-    "test": "react-scripts test",
-    "test:coverage": "react-scripts test --coverage --watchAll=false"
-  },
-  "dependencies": {
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "commitizen": "^4.1.2",
-    "cz-conventional-changelog": "^3.2.0",
-    "husky": "^4.2.5",
-    "prettier": "2.0.5",
-    "tslint": "^6.1.2"
+    "build": "microbundle-crl --no-compress --format modern,cjs",
+    "deploy": "gh-pages -d example/build",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "lint": "./node_modules/.bin/tslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "prepare": "run-s build",
+    "start": "microbundle-crl watch --format modern,cjs",
+    "test:build": "run-s build",
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "test:lint": "tslint .",
+    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
+    "test:watch": "react-scripts test --env=jsdom",
+    "test": "run-s test:unit test:lint test:build"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "typescript": "^3.7.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.0.1",
+    "@commitlint/config-conventional": "^9.0.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^25.1.4",
+    "@types/node": "^12.12.38",
+    "@types/react": "^16.9.27",
+    "@types/react-dom": "^16.9.7",
+    "commitizen": "^4.1.2",
+    "cross-env": "^7.0.2",
+    "cz-conventional-changelog": "^3.2.0",
+    "gh-pages": "^2.2.0",
+    "husky": "^4.2.5",
+    "microbundle-crl": "^0.13.10",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.0.4",
+    "react-scripts": "^3.4.1",
+    "tslint": "^6.1.2"
+  },
+  "files": [
+    "dist"
+  ],
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
@@ -57,16 +78,12 @@
     "twitter",
     "whatsapp"
   ],
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/dulcetti/social-sharing"
   },
   "bugs": {
     "url": "https://github.com/dulcetti/social-sharing/issues"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
