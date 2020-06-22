@@ -1,8 +1,8 @@
 {
   "name": "social-sharing",
-  "version": "1.0.0",
+  "author": "Bruno Dulcetti <brunodulcetti@gmail.com>",
+  "version": "0.1.0",
   "description": "A component to share on social medias a specific URL",
-  "author": "dulcetti",
   "license": "MIT",
   "main": "dist/social-share.js",
   "module": "dist/social-share.modern.js",
