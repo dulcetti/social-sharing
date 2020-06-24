@@ -42,7 +42,6 @@
     "no-console": [
       true,
       "debug",
-      "info",
       "time",
       "timeEnd",
       "trace"
@@ -89,7 +88,7 @@
     ],
     "space-before-function-paren": [
       true,
-      "never"
+      "always"
     ],
     "radix": true,
     "semicolon": [
