@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SocialShare } from './social-share';
+import SocialShare from './social-share';
 
 describe('Social Share Component', () => {
   const urlMock = 'https://google.com';
@@ -50,13 +50,17 @@ describe('Social Share Component', () => {
         <SocialShare url={urlMock} urlTitle={urlTitleMock} />
       );
 
-      const scrollContainer = container.querySelector('.social-share');
-      document?.addEventListener('scroll', () => {
-        console.info('Scrolled');
-      });
+      window.addEventListener(
+        'scroll',
+        () => {
+          console.info('inside scroll');
+        },
+        false
+      );
 
-      fireEvent.scroll(document, { target: { scrollY: 310 } });
-      console.info(scrollContainer);
+      console.info(window.scrollY);
+      fireEvent.scroll(container, { target: { scrollY: 310 } });
+      console.info(window.scrollY);
 
       await userEvent.click(getByRole('button'));
       expect(container.querySelector('.social-share.-visible')).not.toBeNull();

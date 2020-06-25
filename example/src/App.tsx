@@ -1,9 +1,67 @@
 import React from 'react';
 
-import { SocialShare } from 'social-sharing';
+import SocialShare from 'social-sharing';
 
 const App = () => {
-  return <SocialShare title='Create React Library Example 😄' />;
+  return (
+    <>
+      <SocialShare
+        url='https://www.brunodulcetti.com'
+        urlTitle='Bruno Dulcetti'
+        title='Create React Library Example 😄'
+      />
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+      <p>Fodasse</p>
+    </>
+  );
 };
 
 export default App;
