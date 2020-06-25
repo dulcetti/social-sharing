@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PropsSocialShare } from './social-share.interface';
 import * as S from './styles';
 
-export const SocialShare = ({
+export default function SocialShare({
   author,
   className = '',
   textButton = 'Share',
@@ -10,7 +10,7 @@ export const SocialShare = ({
   url,
   urlDescription,
   urlTitle,
-}: PropsSocialShare) => {
+}: PropsSocialShare) {
   const [showMenu, setMenu] = useState<Boolean>(false);
   const [showSubMenu, setSubMenu] = useState<Boolean>(false);
 
@@ -22,7 +22,10 @@ export const SocialShare = ({
   document.addEventListener('scroll', watchScroll, false);
 
   return (
-    <S.ShareContainer className={`${className} ${showMenu ? '-visible' : ''} social-share`}>
+    <S.ShareContainer
+      data-testid='scroll-view'
+      className={`${className} ${showMenu ? '-visible' : ''} social-share`}
+    >
       <S.ShareTitle className='title'>{title}</S.ShareTitle>
 
       <S.ButtonShare onClick={rotateMenu} className='button'>
@@ -73,4 +76,4 @@ export const SocialShare = ({
       </S.ShareList>
     </S.ShareContainer>
   );
-};
+}
