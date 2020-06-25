@@ -50,13 +50,13 @@ describe('Social Share Component', () => {
         <SocialShare url={urlMock} urlTitle={urlTitleMock} />
       );
 
-      // window.addEventListener(
-      //   'scroll',
-      //   () => {
-      //     console.info('inside scroll');
-      //   },
-      //   false
-      // );
+      window.addEventListener(
+        'scroll',
+        () => {
+          console.info('inside scroll');
+        },
+        false
+      );
 
       console.info(window.scrollY);
       fireEvent.scroll(container, { target: { scrollY: 310 } });
