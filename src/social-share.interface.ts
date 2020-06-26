@@ -7,3 +7,12 @@ export interface PropsSocialShare {
   urlDescription?: string;
   urlTitle: string;
 }
+
+export interface PropsIcons {
+  className?: string;
+  name: string;
+}
+
+export interface PropsSvg {
+  label?: string;
+}
