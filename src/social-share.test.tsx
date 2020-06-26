@@ -66,7 +66,7 @@ describe('Social Share Component', () => {
       expect(container.querySelector('.social-share.-visible')).not.toBeNull();
     });
 
-    test('list of social media to be opened on click button', async () => {
+    test('list of social media must be opened on click button', async () => {
       const { container, getByRole } = render(
         <SocialShare url={urlMock} urlTitle={urlTitleMock} />
       );
