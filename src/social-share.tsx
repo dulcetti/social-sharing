@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { PropsSocialShare } from './social-share.interface';
 import * as S from './styles';
+import { Icons, Svgs } from './svgs';
 
 export default function SocialShare({
   author,
   className = '',
-  textButton = 'Share',
+  textButton = 'share',
   title = 'Gostou? Compartilhe esse artigo ;)',
   url,
   urlDescription,
@@ -26,10 +27,14 @@ export default function SocialShare({
       data-testid='scroll-view'
       className={`${className} ${showMenu ? '-visible' : ''} social-share`}
     >
+      <Svgs label={textButton} />
       <S.ShareTitle className='title'>{title}</S.ShareTitle>
 
       <S.ButtonShare onClick={rotateMenu} className='button'>
-        {textButton}
+        <Icons name='share' className='share' />
+        <S.LabelShare>
+          <Icons name='text-share' className='text' />
+        </S.LabelShare>
       </S.ButtonShare>
 
       <S.ShareList className={`${showSubMenu && '-opened'} list`}>
@@ -41,6 +46,7 @@ export default function SocialShare({
             target='_blank'
           >
             <S.LabelItem>Facebook</S.LabelItem>
+            <Icons name='facebook' />
           </S.ShareLink>
         </S.ShareItem>
         <S.ShareItem className='item -twitter'>
@@ -51,6 +57,7 @@ export default function SocialShare({
             target='_blank'
           >
             <S.LabelItem>Twitter</S.LabelItem>
+            <Icons name='twitter' />
           </S.ShareLink>
         </S.ShareItem>
         <S.ShareItem className='item -linkedin'>
@@ -61,6 +68,7 @@ export default function SocialShare({
             target='_blank'
           >
             <S.LabelItem>Linkedin</S.LabelItem>
+            <Icons name='linkedin' />
           </S.ShareLink>
         </S.ShareItem>
         <S.ShareItem className='item -whatsapp'>
@@ -71,6 +79,7 @@ export default function SocialShare({
             target='_blank'
           >
             <S.LabelItem>Whatsapp</S.LabelItem>
+            <Icons name='whatsapp' />
           </S.ShareLink>
         </S.ShareItem>
       </S.ShareList>

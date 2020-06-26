@@ -145,4 +145,6 @@ export const ShareLink = styled.a`
   }
 `;
 
-export const LabelItem = styled.span``;
+export const LabelItem = styled.span`
+  display: none;
+`;
