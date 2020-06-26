@@ -1,4 +1,3 @@
-/* eslint max-len: 'off' */
 import React from 'react';
 import styled from 'styled-components';
 import { PropsIcons, PropsSvg } from './social-share.interface';
