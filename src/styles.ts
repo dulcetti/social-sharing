@@ -37,7 +37,7 @@ export const ButtonShare = styled.button`
     width: inherit;
     z-index: 4;
 
-    .share {
+    > .share {
       height: 32px;
       margin-bottom: 16px;
       width: 32px;
@@ -69,13 +69,15 @@ export const LabelShare = styled.div`
   text-transform: uppercase;
   width: 80px;
 
-  svg {
+  > svg {
     height: inherit;
     width: inherit;
   }
 `;
 
 export const ShareList = styled.ul`
+  padding: 0;
+
   @media (max-width: ${breakpointMax}) {
     border-radius: 50%;
     height: 70px;
@@ -113,6 +115,10 @@ export const ShareList = styled.ul`
         top: 35px;
       }
     }
+  }
+
+  @media (min-width: ${breakpointMin}) {
+    margin: 0;
   }
 `;
 
