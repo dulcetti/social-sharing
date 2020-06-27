@@ -19,8 +19,11 @@ describe('Social Share Component', () => {
     });
 
     test('render the title prop', () => {
+      const mockOptions = {
+        title: 'Title of component',
+      };
       const { getByText } = render(
-        <SocialShare url={urlMock} urlTitle={urlTitleMock} title='Title of component' />
+        <SocialShare url={urlMock} urlTitle={urlTitleMock} options={mockOptions} />
       );
       expect(getByText(/Title of component/i)).toBeInTheDocument();
     });
@@ -46,24 +49,21 @@ describe('Social Share Component', () => {
     });
 
     test('menu has to be showed after scroll', async () => {
+      let scrolled = false;
       const { container, getByRole } = render(
         <SocialShare url={urlMock} urlTitle={urlTitleMock} />
       );
 
-      window.addEventListener(
-        'scroll',
-        () => {
-          console.info('inside scroll');
-        },
-        false
-      );
+      window.addEventListener('scroll', () => (scrolled = true), false);
 
-      console.info(window.scrollY);
-      fireEvent.scroll(container, { target: { scrollY: 310 } });
-      console.info(window.scrollY);
-
+      fireEvent.scroll(window, { target: { scrollY: 310 } });
       await userEvent.click(getByRole('button'));
       expect(container.querySelector('.social-share.-visible')).not.toBeNull();
+      expect(scrolled).toBeTruthy();
+
+      fireEvent.scroll(window, { target: { scrollY: 0 } });
+      await userEvent.click(getByRole('button'));
+      expect(container.querySelector('.social-share.-visible')).toBeNull();
     });
 
     test('list of social media must be opened on click button', async () => {
