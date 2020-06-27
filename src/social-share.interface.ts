@@ -1,6 +1,6 @@
 export interface PropsSocialShare {
   className?: string;
-  options?: PropsSvg;
+  options?: PropsOptions;
   textButton?: string;
   title?: string;
   url: string;
@@ -8,25 +8,15 @@ export interface PropsSocialShare {
   urlTitle: string;
 }
 
-export interface PropsSvg {
-  label?: string;
-  social?: SocialMedias;
-  text?: string;
-}
-
-interface SocialMedias {
+export interface PropsOptions {
   author?: string;
-  facebook?: Colors;
-  linkedin?: Colors;
-  share?: {
-    circle?: string;
-    polygon?: string;
-  };
-  twitter?: Colors;
-  whatsapp?: Colors;
-}
-
-interface Colors {
-  bg?: string;
+  bgFacebook?: string;
+  bgLinkedin?: string;
+  bgTwitter?: string;
+  bgWhatsapp?: string;
   color?: string;
+  label?: string;
+  circleShare?: string;
+  polygonShare?: string;
+  text?: string;
 }
