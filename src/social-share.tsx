@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PropsSocialShare } from './social-share.interface';
 import * as S from './styles';
 
@@ -44,11 +44,16 @@ export default function SocialShare({
   };
 
   const toggleMenu = () => setSubMenu(!showSubMenu);
-  const watchScroll = () => {
-    window.scrollY > scrollY ? setMenu(true) : setMenu(false);
-  };
 
-  document.addEventListener('scroll', watchScroll, false);
+  useEffect(() => {
+    const watchScroll = () => {
+      window.scrollY > scrollY ? setMenu(true) : setMenu(false);
+    };
+
+    window.addEventListener('scroll', watchScroll, false);
+
+    return () => window.removeEventListener('scroll', watchScroll, false);
+  }, []);
 
   return (
     <S.ShareContainer
