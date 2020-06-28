@@ -1,10 +1,6 @@
 module.exports = {
   jest: {
-    collectCoverageFrom: [
-      'src/**/*.{js,jsx,ts,tsx}',
-      '!<rootDir>/node_modules/',
-      '!<rootDir>/path/to/dir/',
-    ],
+    collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!<rootDir>/node_modules/'],
     coverageThreshold: {
       global: {
         branches: 80,
