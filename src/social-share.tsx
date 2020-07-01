@@ -44,6 +44,7 @@ export default function SocialShare({
   };
 
   const toggleMenu = () => setSubMenu(!showSubMenu);
+  const authorReplaced = author.replace('@', '');
 
   useEffect(() => {
     const watchScroll = () => {
@@ -130,7 +131,7 @@ export default function SocialShare({
         </S.ShareItem>
         <S.ShareItem className='item -twitter'>
           <S.ShareLink
-            href={`https://twitter.com/share?url=${url}&text=${urlTitle}&via=${author}`}
+            href={`https://twitter.com/share?url=${url}&text=${urlTitle}&via=${authorReplaced}`}
             aria-label='Twitter'
             rel='noopener noreferrer'
             target='_blank'
@@ -158,7 +159,7 @@ export default function SocialShare({
         </S.ShareItem>
         <S.ShareItem className='item -linkedin'>
           <S.ShareLink
-            href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${urlTitle}&summary=${urlTitle}&source=@${author}&text=${urlDescription}`}
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${urlTitle}&summary=${urlTitle}&source=@${authorReplaced}&text=${urlDescription}`}
             aria-label='Linkedin'
             rel='noopener noreferrer'
             target='_blank'
