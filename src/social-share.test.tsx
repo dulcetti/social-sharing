@@ -60,45 +60,46 @@ describe('Social Share Component', () => {
   describe('Button interaction and Scroll', () => {
     test('method toggle visibility of menu', () => {
       const { container } = render(<SocialShare url={urlMock} urlTitle={urlTitleMock} />);
+      const element = container.querySelector('.social-share');
 
-      expect(container.querySelector('.social-share.-visible')).toBeNull();
+      expect(element).not.toHaveClass('-visible');
     });
 
     test('menu has to be showed after scroll', async () => {
       let scrolled = false;
-      const { container, getByRole } = render(
-        <SocialShare url={urlMock} urlTitle={urlTitleMock} />
-      );
+      const { container } = render(<SocialShare url={urlMock} urlTitle={urlTitleMock} />);
+      const element = container.querySelector('.social-share');
 
       window.addEventListener('scroll', () => (scrolled = true), false);
 
       fireEvent.scroll(window, { target: { scrollY: 310 } });
-      await userEvent.click(getByRole('button'));
-      expect(container.querySelector('.social-share.-visible')).not.toBeNull();
+      await userEvent.click(screen.getByRole('button'));
+      expect(element).toHaveClass('-visible');
       expect(scrolled).toBeTruthy();
 
       fireEvent.scroll(window, { target: { scrollY: 0 } });
-      await userEvent.click(getByRole('button'));
-      expect(container.querySelector('.social-share.-visible')).toBeNull();
+      await userEvent.click(screen.getByRole('button'));
+      expect(element).not.toHaveClass('-visible');
     });
 
     test('list of social media must be opened on click button', async () => {
-      const { container, getByRole } = render(
-        <SocialShare url={urlMock} urlTitle={urlTitleMock} />
-      );
+      const { container } = render(<SocialShare url={urlMock} urlTitle={urlTitleMock} />);
+      const list = container.querySelector('.list');
 
-      await userEvent.click(getByRole('button'));
-      expect(container.querySelector('.list.-opened')).not.toBeNull();
+      await userEvent.click(screen.getByRole('button'));
+      expect(list).toHaveClass('-opened');
 
-      await userEvent.click(getByRole('button'));
-      expect(container.querySelector('.list.-opened')).toBeNull();
+      await userEvent.click(screen.getByRole('button'));
+      expect(list).not.toHaveClass('-opened');
     });
   });
 
   describe('DOM content', () => {
     test('all social media has to be rendered', () => {
       const { container } = render(<SocialShare url={urlMock} urlTitle={urlTitleMock} />);
-      expect(container.querySelectorAll('.list > .item').length).toBe(4);
+      const items = container.querySelectorAll('.list > .item').length;
+
+      expect(items).toBe(4);
     });
   });
 });
