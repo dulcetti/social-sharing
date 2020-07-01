@@ -57,10 +57,7 @@ export default function SocialShare({
   }, []);
 
   return (
-    <S.ShareContainer
-      data-testid='scroll-view'
-      className={`${className} ${showMenu ? '-visible' : ''} social-share`}
-    >
+    <S.ShareContainer className={`${className} ${showMenu ? '-visible' : ''} social-share`}>
       <S.ShareTitle className='title'>{title}</S.ShareTitle>
 
       <S.ButtonShare onClick={toggleMenu} className='button'>
