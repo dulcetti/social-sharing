@@ -6,7 +6,7 @@ export interface PropsSocialShare {
   urlTitle: string;
 }
 
-interface PropsOptions {
+export interface PropsOptions {
   author?: string;
   bgFacebook?: string;
   bgLinkedin?: string;

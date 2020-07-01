@@ -1,7 +1,8 @@
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SocialShare from './social-share';
+import { PropsOptions } from './social-share.interface';
 
 describe('Social Share Component', () => {
   const urlMock = 'https://google.com';
@@ -14,30 +15,45 @@ describe('Social Share Component', () => {
 
   describe('Props', () => {
     test('render the title default', () => {
-      const { getByText } = render(<SocialShare url={urlMock} urlTitle={urlTitleMock} />);
-      expect(getByText(/Gostou\? Compartilhe esse artigo ;\)/i)).toBeInTheDocument();
+      render(<SocialShare url={urlMock} urlTitle={urlTitleMock} />);
+      expect(screen.getByText(/Gostou\? Compartilhe esse artigo ;\)/i)).toBeInTheDocument();
+      expect(screen.getByText(/share/i)).toBeInTheDocument();
     });
 
-    test('render the title prop', () => {
-      const mockOptions = {
+    test('render the description prop', () => {
+      render(
+        <SocialShare url={urlMock} urlTitle={urlTitleMock} urlDescription={urlDescriptionMock} />
+      );
+      expect(screen.getByLabelText(/Linkedin/i).closest('a')).toHaveAttribute(
+        'href',
+        `https://www.linkedin.com/shareArticle?mini=true&url=${urlMock}&title=${urlTitleMock}&summary=${urlTitleMock}&source=@&text=${urlDescriptionMock}`
+      );
+    });
+
+    test('render the all options prop', () => {
+      const mockOptions: PropsOptions = {
+        author: 'dulcetti',
+        label: 'Compartilhar',
         title: 'Title of component',
       };
-      const { getByText } = render(
-        <SocialShare url={urlMock} urlTitle={urlTitleMock} options={mockOptions} />
+      render(<SocialShare url={urlMock} urlTitle={urlTitleMock} options={mockOptions} />);
+      expect(screen.getByText(/Title of component/i)).toBeInTheDocument();
+      expect(screen.getByLabelText('Twitter').closest('a')).toHaveAttribute(
+        'href',
+        `https://twitter.com/share?url=${urlMock}&text=${urlTitleMock}&via=${mockOptions.author}`
       );
-      expect(getByText(/Title of component/i)).toBeInTheDocument();
+      expect(screen.getByText(/Compartilhar/i)).toBeInTheDocument();
     });
 
-    test('render component with default className', () => {
-      const { container } = render(<SocialShare url={urlMock} urlTitle={urlTitleMock} />);
-      expect(container.querySelector('.social-share')).toBeTruthy();
-    });
-
-    test('render component with className on prop', () => {
-      const { container } = render(
-        <SocialShare url={urlMock} urlTitle={urlTitleMock} className='fodasse' />
+    test(`the value of the author's option must not have @`, () => {
+      const mockOptions: PropsOptions = {
+        author: '@dulcetti',
+      };
+      render(<SocialShare options={mockOptions} url={urlMock} urlTitle={urlTitleMock} />);
+      expect(screen.getByLabelText('Twitter').closest('a')).toHaveAttribute(
+        'href',
+        `https://twitter.com/share?url=${urlMock}&text=${urlTitleMock}&via=dulcetti`
       );
-      expect(container.querySelector('.fodasse'));
     });
   });
 
