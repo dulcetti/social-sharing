@@ -30,10 +30,19 @@ describe('Social Share Component', () => {
       );
     });
 
-    test('render the all options prop', () => {
+    test('render all options prop', () => {
       const mockOptions: PropsOptions = {
         author: 'dulcetti',
+        bgFacebook: 'red',
+        bgLinkedin: 'red',
+        bgTwitter: 'red',
+        bgWhatsapp: 'red',
+        colorSvgs: 'red',
         label: 'Compartilhar',
+        labelColor: 'red',
+        scrollY: 400,
+        shareCircle: 'red',
+        sharePolygon: 'red',
         title: 'Title of component',
       };
       render(<SocialShare url={urlMock} urlTitle={urlTitleMock} options={mockOptions} />);
@@ -45,7 +54,7 @@ describe('Social Share Component', () => {
       expect(screen.getByText(/Compartilhar/i)).toBeInTheDocument();
     });
 
-    test(`the value of the author's option must not have @`, () => {
+    test(`the author's option value must not have @`, () => {
       const mockOptions: PropsOptions = {
         author: '@dulcetti',
       };
