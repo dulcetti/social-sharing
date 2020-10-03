@@ -9115,7 +9115,7 @@ react@^16.13.1:
   uid ""
 
 "react@link:../node_modules/react":
-  version "0.0.0"
+  version "16.13.1"
   uid ""
 
 read-pkg-up@^2.0.0:
